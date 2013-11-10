@@ -41,12 +41,12 @@ server_version_re = re.compile(r'(\d{1,2})\.(\d{1,2})\.(\d{1,2})')
 params_re = re.compile(r'%[a-zA-Z]')
 
 # TODO: monkey patch django to support our package in areas such as GIS is not a good solution
-try:
-    from django.conf import settings
-    if settings.DATABASE_ENGINE.startswith('mysql'):
-        settings.DATABASE_ENGINE = 'mysql'
-except ImportError:
-    pass
+#try:
+#    from django.conf import settings
+#    if settings.DATABASE_ENGINE.startswith('mysql'):
+#        settings.DATABASE_ENGINE = 'mysql'
+#except ImportError:
+#    pass
 
 class CursorWrapper(object):
     """
@@ -128,7 +128,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
 
         self.server_version = None
         self.features = DatabaseFeatures(self)
-        self.ops = DatabaseOperations()
+        self.ops = DatabaseOperations(self)
         self.client = DatabaseClient(self)
         self.creation = DatabaseCreation(self)
         self.introspection = DatabaseIntrospection(self)
