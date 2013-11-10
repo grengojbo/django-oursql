@@ -1,5 +1,6 @@
 from mysql_oursql.standard.creation import DatabaseCreation
 
+
 class MySQLCreation(DatabaseCreation):
 
     def sql_indexes_for_field(self, model, f, style):

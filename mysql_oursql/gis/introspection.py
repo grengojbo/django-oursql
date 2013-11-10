@@ -4,6 +4,7 @@ from django.contrib.gis.gdal import OGRGeomType
 
 from mysql_oursql.standard.introspection import DatabaseIntrospection
 
+
 class MySQLIntrospection(DatabaseIntrospection):
     # Updating the data_types_reverse dictionary with the appropriate
     # type for Geometry fields.

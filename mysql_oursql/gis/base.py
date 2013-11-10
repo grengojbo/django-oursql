@@ -3,6 +3,7 @@ from mysql_oursql.gis.creation import MySQLCreation
 from mysql_oursql.gis.introspection import MySQLIntrospection
 from mysql_oursql.gis.operations import MySQLOperations
 
+
 class DatabaseWrapper(MySQLDatabaseWrapper):
 
     def __init__(self, *args, **kwargs):

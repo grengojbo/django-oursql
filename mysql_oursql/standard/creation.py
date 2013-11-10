@@ -83,23 +83,23 @@ class DatabaseCreation(BaseDatabaseCreation):
         self.set_autocommit()
         try:
             cursor.execute("CREATE DATABASE %s %s" % (qn(test_database_name), suffix), plain_query=True)
-        except Exception, e:
+        except Exception as e:
             sys.stderr.write("Got an error creating the test database: %s\n" % e)
             if not autoclobber:
                 confirm = raw_input("Type 'yes' if you would like to try deleting the test database '%s', or 'no' to cancel: " % test_database_name)
             if autoclobber or confirm == 'yes':
                 try:
                     if verbosity >= 1:
-                        print "Destroying old test database..."
+                        print("Destroying old test database...")
                     cursor.execute("DROP DATABASE %s" % qn(test_database_name), plain_query=True)
                     if verbosity >= 1:
-                        print "Creating test database..."
+                        print("Creating test database...")
                     cursor.execute("CREATE DATABASE %s %s" % (qn(test_database_name), suffix), plain_query=True)
-                except Exception, e:
+                except Exception as e:
                     sys.stderr.write("Got an error recreating the test database: %s\n" % e)
                     sys.exit(2)
             else:
-                print "Tests cancelled."
+                print("Tests cancelled.")
                 sys.exit(1)
 
         return test_database_name

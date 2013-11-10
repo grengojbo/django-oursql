@@ -3,6 +3,7 @@ from mysql_oursql.standard.operations import DatabaseOperations
 from django.contrib.gis.db.backends.adapter import WKTAdapter
 from django.contrib.gis.db.backends.base import BaseSpatialOperations
 
+
 class MySQLOperations(DatabaseOperations, BaseSpatialOperations):
 
     compiler_module = 'django.contrib.gis.db.models.sql.compiler'
@@ -47,6 +48,15 @@ class MySQLOperations(DatabaseOperations, BaseSpatialOperations):
         return placeholder
 
     def spatial_lookup_sql(self, lvalue, lookup_type, value, field, qn):
+        """
+
+        :param lvalue:
+        :param lookup_type:
+        :param value:
+        :param field:
+        :param qn:
+        :return: :raise TypeError:
+        """
         alias, col, db_type = lvalue
 
         geo_col = '%s.%s' % (qn(alias), qn(col))
